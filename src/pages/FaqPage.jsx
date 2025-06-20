@@ -14,11 +14,11 @@ const faqs = [
     },
     {
         question: "Can Synex be permanent, or is it just for short-term use?",
-        answer: "It's totally up to you. Synex is flexible—whether you need it for a short project or want to integrate it long-term into your system, it's designed to handle both without any hassle."
+        answer: "It's totally up to you. Synex is flexible. Whether you need it for a short project or want to integrate it long term into your system, it's designed to handle both without any hassle."
     },
     {
         question: "Do I need to be tech-savvy to use Synex?",
-        answer: "Not at all! Synex is designed to be super user-friendly. If you can handle a few clicks, you can set it up and start using it in no time—no technical expertise needed."
+        answer: "Not at all! Synex is designed to be super user friendly. If you can handle a few clicks, you can set it up and start using it in no time, no technical expertise needed."
     },
     {
         question: "What kind of systems work with Synex?",

@@ -113,6 +113,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   flex: 1;
   position: relative; /* New: To contain the absolute positioned background */
+  overflow-x: hidden; /* Prevent horizontal scroll from glow */
 }
 
 .background-container {
@@ -492,22 +493,25 @@ Animations & Effects
     display: inline-block;
     opacity: 0;
     transform: translateY(30px);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.6s;
 }
 
 .hero {
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-height: calc(80vh - 80px); /* 80px is header height */
-    padding: var(--space-4xl) 0; /* Add some padding */
+    padding-top: 0;
+    padding-bottom: var(--space-4xl);
 }
 
 .hero .container {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tagline {
@@ -534,27 +538,38 @@ Animations & Effects
 }
 
 .widget-section {
-    padding-top: var(--space-3xl);
-    padding-bottom: var(--space-3xl);
+    position: relative;
+    margin-top: 15rem; /* Pushes the section down to be revealed on scroll */
+}
+
+.widget-section::before {
+    content: '';
+    position: absolute;
+    top: 35%;      /* Shifted down */
+    left: 35%;      /* Shifted right for a more diagonal look */
+    width: 1200px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255, 242, 0, 0.1) 0%, rgba(255, 242, 0, 0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(60px);
 }
 
 .content-widget {
-    background-color: #0A0A0A; /* Slightly different dark shade */
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    min-height: 500px;
-    width: 95%;
-    max-width: 1400px;
-    margin: 0 auto;
-    box-shadow: var(--shadow-md);
-    position: relative; /* For positioning the aurora later */
-    overflow: hidden; /* To contain the aurora effect */
+    background-color: #111111;
     padding: var(--space-3xl);
+    border-radius: var(--radius-xl);
     text-align: center;
+    position: relative;
+    z-index: 1; /* Ensures this is on top of the section's pseudo-element */
+    overflow: hidden;
+    border: 1px solid var(--color-border);
 }
 
 .features {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
 }
 
 .section-description {

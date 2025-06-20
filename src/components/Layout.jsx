@@ -121,7 +121,7 @@ const Layout = ({ children }) => {
       <main>{children}</main>
 
       <footer className="footer">
-        <p>&copy; 2025 synex</p>
+        <p>&copy; 2024 synex</p>
         <Link to="/policy" className="footer-link">Terms & Conditions</Link>
       </footer>
       
