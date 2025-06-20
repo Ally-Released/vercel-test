@@ -1,6 +1,7 @@
+import React from 'react';
 import "./GlareHover.css";
 
-const GlareHover = ({
+const GlareHover = React.forwardRef(({
   width = "500px",
   height = "500px",
   background = "#000",
@@ -15,7 +16,7 @@ const GlareHover = ({
   playOnce = false,
   className = "",
   style = {},
-}) => {
+}, ref) => {
   const hex = glareColor.replace("#", "");
   let rgba = glareColor;
   if (/^[0-9A-Fa-f]{6}$/.test(hex)) {
@@ -44,12 +45,13 @@ const GlareHover = ({
 
   return (
     <div
+      ref={ref}
       className={`glare-hover ${playOnce ? 'glare-hover--play-once' : ''} ${className}`}
       style={{ ...vars, ...style }}
     >
       {children}
     </div>
   );
-};
+});
 
 export default GlareHover; 

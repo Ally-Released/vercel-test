@@ -265,9 +265,15 @@ Shared Components
 
 .nav-links a.active {
     color: var(--color-primary);
+    /* The underline is now replaced by the FuzzyText effect */
+}
+
+.nav-links a.active canvas {
+    vertical-align: middle; /* Helps center the canvas */
 }
 
 .nav-links a, .footer-links a {
+    color: var(--color-text-secondary);
     padding: var(--space-sm) 0;
 }
 
@@ -564,6 +570,7 @@ Animations & Effects
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-xl);
+    perspective: 1000px;
 }
 
 .feature-card {
@@ -697,16 +704,64 @@ Animations & Effects
     font-size: var(--font-size-small);
 }
 
+.feature-grid {
+    perspective: 1000px;
+}
+
+.feature-grid .fade-in-on-scroll {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    will-change: transform, opacity; /* Optimization for scroll animation */
+}
+
+.feature-grid.is-visible .fade-in-on-scroll {
+    opacity: 1;
+}
+
+/* Slide-in and Swap Animations */
+@media (min-width: 768px) {
+    .feature-grid > .fade-in-on-scroll:nth-child(1) {
+        transform: translateX(-100%) rotateY(-30deg);
+    }
+    .feature-grid > .fade-in-on-scroll:nth-child(2) {
+        transform: translateY(50%) scale(0.8);
+    }
+    .feature-grid > .fade-in-on-scroll:nth-child(3) {
+        transform: translateX(100%) rotateY(30deg);
+    }
+
+    .feature-grid.is-visible > .fade-in-on-scroll:nth-child(1) {
+        transform: translateX(calc(200% + 2 * var(--space-lg))) rotateY(0);
+    }
+    .feature-grid.is-visible > .fade-in-on-scroll:nth-child(2) {
+        transform: translateY(0) scale(1);
+    }
+    .feature-grid.is-visible > .fade-in-on-scroll:nth-child(3) {
+        transform: translateX(calc(-200% - 2 * var(--space-lg))) rotateY(0);
+    }
+}
+
+/* Fallback for smaller screens (no swap) */
+@media (max-width: 767px) {
+    .feature-grid > .fade-in-on-scroll {
+        transform: translateY(30px);
+    }
+    .feature-grid.is-visible > .fade-in-on-scroll {
+    transform: translateY(0);
+    }
+}
+
 /* ---
 Page: Buy
 --- */
 .buy-section {
+  position: relative;
+  padding-top: var(--space-4xl);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  padding-top: var(--space-4xl);
   padding-bottom: var(--space-4xl);
 }
 

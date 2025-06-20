@@ -5,6 +5,7 @@ import Aurora from './Aurora';
 import logo from '../assets/LogoFX.png';
 import GradientText from './GradientText';
 import Noise from './Noise';
+import FuzzyText from './FuzzyText';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -44,10 +45,10 @@ const Layout = ({ children }) => {
   }, []);
 
   const navLinks = useMemo(() => [
-    { name: 'Home', path: '/' },
-    { name: 'Customer Area', path: '/login' },
-    { name: 'FAQ', path: '/faq' },
     { name: 'Buy Synex', path: '/buy' },
+    { name: 'Policies', path: '/policy' },
+    { name: 'FAQ', path: '/faq' },
+    { name: 'User Panel', path: '/login' },
   ], []);
 
   const isBuyPage = location.pathname === '/buy';
@@ -87,16 +88,30 @@ const Layout = ({ children }) => {
             </Link>
             <nav>
               <ul className="nav-links">
-                {navLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      className={location.pathname === link.path ? 'active' : ''}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <li key={link.path}>
+                      <Link
+                        to={link.path}
+                        className={isActive ? 'active' : ''}
+                      >
+                        {isActive ? (
+                          <FuzzyText
+                            fontSize="16px"
+                            color="#FFF200"
+                            baseIntensity={0.05}
+                            hoverIntensity={0.3}
+                          >
+                            {link.name}
+                          </FuzzyText>
+                        ) : (
+                          link.name
+                        )}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           </div>
