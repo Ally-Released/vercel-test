@@ -11,7 +11,7 @@ void main() {
 `;
 
 const FRAG = `#version 300 es
-precision mediump float;
+precision highp float;
 
 uniform float uTime;
 uniform float uAmplitude;
@@ -113,8 +113,7 @@ export default function Aurora(props) {
   const {
     colorStops = ["#5227FF", "#7cff67", "#5227FF"],
     amplitude = 1.0,
-    blend = 0.5,
-    resolution = 0.75,
+    blend = 0.5
   } = props;
   const propsRef = useRef(props);
   propsRef.current = props;
@@ -128,16 +127,13 @@ export default function Aurora(props) {
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,
-      antialias: false,
-      dpr: resolution,
+      antialias: true
     });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     gl.canvas.style.backgroundColor = 'transparent';
-    gl.canvas.style.width = '100%';
-    gl.canvas.style.height = '100%';
 
     let program;
 
@@ -178,18 +174,8 @@ export default function Aurora(props) {
     ctn.appendChild(gl.canvas);
 
     let animateId = 0;
-    let lastTime = 0;
-    const targetInterval = 1000 / 30;
-
     const update = (t) => {
       animateId = requestAnimationFrame(update);
-      const elapsed = t - lastTime;
-
-      if (elapsed < targetInterval) {
-        return;
-      }
-      lastTime = t - (elapsed % targetInterval);
-
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       program.uniforms.uTime.value = time * speed * 0.1;
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
@@ -214,7 +200,7 @@ export default function Aurora(props) {
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [amplitude]);
 
   return <div ref={ctnDom} className="aurora-container" />;
 }

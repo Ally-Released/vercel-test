@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Beams from '../components/Beams';
+import NoiseArt from '../components/NoiseArt';
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState('productKey');
@@ -20,6 +21,9 @@ const LoginPage = () => {
             />
         </div>
         <div className="customer-portal-container premium-layout">
+            <div className="portal-image-header">
+                <NoiseArt colors={['#0D0D0D', 'var(--color-primary)']} />
+            </div>
             <div className="portal-header">
                 <h2 className="portal-title">Customer Portal</h2>
                 <p className="portal-subtitle">Access your Synex dashboard.</p>

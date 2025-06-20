@@ -557,6 +557,15 @@ Login Page (Premium)
   border-top: 3px solid var(--color-primary);
 }
 
+.premium-layout .portal-image-header {
+  height: 120px;
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: #000;
+  border: 1px solid var(--color-border);
+}
+
 .premium-layout .portal-header {
   text-align: center;
   margin-bottom: var(--space-xl);
