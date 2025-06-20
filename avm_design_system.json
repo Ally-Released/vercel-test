@@ -1,0 +1,340 @@
+{
+  "designSystem": {
+    "name": "AVM Gaming/Security Platform Design System",
+    "version": "1.0",
+    "category": "gaming_security_platform",
+    
+    "colorPalette": {
+      "primary": {
+        "brand_red": "#E53E3E",
+        "brand_red_hover": "#C53030",
+        "brand_red_light": "#FC8181"
+      },
+      "backgrounds": {
+        "primary": "#000000",
+        "secondary": "#1A1A1A",
+        "card": "#2D2D2D",
+        "elevated": "#333333"
+      },
+      "text": {
+        "primary": "#FFFFFF",
+        "secondary": "#A0A0A0",
+        "muted": "#666666"
+      },
+      "status": {
+        "online": "#48BB78",
+        "warning": "#F6AD55",
+        "offline": "#E53E3E",
+        "updating": "#4299E1"
+      },
+      "accent": {
+        "purple": "#9F7AEA",
+        "blue": "#4299E1"
+      }
+    },
+
+    "typography": {
+      "fontFamily": {
+        "primary": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "monospace": "'JetBrains Mono', 'Fira Code', monospace"
+      },
+      "scale": {
+        "hero": {
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "1.1"
+        },
+        "h1": {
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "1.2"
+        },
+        "h2": {
+          "fontSize": "28px",
+          "fontWeight": "600",
+          "lineHeight": "1.3"
+        },
+        "h3": {
+          "fontSize": "20px",
+          "fontWeight": "600",
+          "lineHeight": "1.4"
+        },
+        "body": {
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "1.5"
+        },
+        "small": {
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "1.4"
+        },
+        "caption": {
+          "fontSize": "12px",
+          "fontWeight": "500",
+          "lineHeight": "1.3"
+        }
+      }
+    },
+
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px",
+      "3xl": "64px",
+      "4xl": "96px"
+    },
+
+    "borderRadius": {
+      "sm": "4px",
+      "md": "8px",
+      "lg": "12px",
+      "xl": "16px",
+      "full": "9999px"
+    },
+
+    "shadows": {
+      "sm": "0 2px 4px rgba(0, 0, 0, 0.1)",
+      "md": "0 4px 8px rgba(0, 0, 0, 0.2)",
+      "lg": "0 8px 16px rgba(0, 0, 0, 0.3)",
+      "glow": "0 0 20px rgba(229, 62, 62, 0.3)"
+    },
+
+    "components": {
+      "button": {
+        "primary": {
+          "background": "#E53E3E",
+          "color": "#FFFFFF",
+          "padding": "12px 24px",
+          "borderRadius": "8px",
+          "fontWeight": "600",
+          "fontSize": "16px",
+          "border": "none",
+          "cursor": "pointer",
+          "transition": "all 0.2s ease"
+        },
+        "secondary": {
+          "background": "transparent",
+          "color": "#E53E3E",
+          "padding": "12px 24px",
+          "borderRadius": "8px",
+          "fontWeight": "600",
+          "fontSize": "16px",
+          "border": "2px solid #E53E3E",
+          "cursor": "pointer",
+          "transition": "all 0.2s ease"
+        },
+        "ghost": {
+          "background": "transparent",
+          "color": "#A0A0A0",
+          "padding": "8px 16px",
+          "borderRadius": "6px",
+          "fontWeight": "500",
+          "fontSize": "14px",
+          "border": "1px solid #333333",
+          "cursor": "pointer",
+          "transition": "all 0.2s ease"
+        }
+      },
+
+      "card": {
+        "default": {
+          "background": "#1A1A1A",
+          "border": "1px solid #333333",
+          "borderRadius": "12px",
+          "padding": "24px",
+          "boxShadow": "0 4px 8px rgba(0, 0, 0, 0.2)"
+        },
+        "elevated": {
+          "background": "#2D2D2D",
+          "border": "1px solid #444444",
+          "borderRadius": "12px",
+          "padding": "24px",
+          "boxShadow": "0 8px 16px rgba(0, 0, 0, 0.3)"
+        },
+        "pricing": {
+          "background": "#1A1A1A",
+          "border": "2px solid #E53E3E",
+          "borderRadius": "16px",
+          "padding": "32px",
+          "boxShadow": "0 0 20px rgba(229, 62, 62, 0.2)"
+        }
+      },
+
+      "navbar": {
+        "background": "#000000",
+        "borderBottom": "1px solid #333333",
+        "padding": "16px 24px",
+        "backdropFilter": "blur(10px)",
+        "position": "sticky",
+        "top": "0",
+        "zIndex": "100"
+      },
+
+      "statusIndicator": {
+        "online": {
+          "background": "#48BB78",
+          "color": "#FFFFFF",
+          "padding": "4px 8px",
+          "borderRadius": "4px",
+          "fontSize": "12px",
+          "fontWeight": "600"
+        },
+        "offline": {
+          "background": "#E53E3E",
+          "color": "#FFFFFF",
+          "padding": "4px 8px",
+          "borderRadius": "4px",
+          "fontSize": "12px",
+          "fontWeight": "600"
+        },
+        "updating": {
+          "background": "#F6AD55",
+          "color": "#000000",
+          "padding": "4px 8px",
+          "borderRadius": "4px",
+          "fontSize": "12px",
+          "fontWeight": "600"
+        }
+      },
+
+      "statsCard": {
+        "background": "#1A1A1A",
+        "border": "1px solid #333333",
+        "borderRadius": "12px",
+        "padding": "24px",
+        "textAlign": "center",
+        "position": "relative",
+        "overflow": "hidden"
+      },
+
+      "progressBar": {
+        "background": "#333333",
+        "height": "4px",
+        "borderRadius": "2px",
+        "overflow": "hidden",
+        "fill": "#E53E3E"
+      },
+
+      "badge": {
+        "lifetime": {
+          "background": "#E53E3E",
+          "color": "#FFFFFF",
+          "padding": "4px 12px",
+          "borderRadius": "20px",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "textTransform": "uppercase"
+        },
+        "new": {
+          "background": "#48BB78",
+          "color": "#FFFFFF",
+          "padding": "4px 8px",
+          "borderRadius": "4px",
+          "fontSize": "10px",
+          "fontWeight": "600",
+          "textTransform": "uppercase"
+        }
+      }
+    },
+
+    "layout": {
+      "maxWidth": "1200px",
+      "containerPadding": "24px",
+      "sectionSpacing": "96px",
+      "gridGap": "24px"
+    },
+
+    "animations": {
+      "hover": {
+        "transition": "all 0.2s ease",
+        "transform": "scale(1.02)"
+      },
+      "fadeIn": {
+        "opacity": "0",
+        "transform": "translateY(20px)",
+        "transition": "all 0.4s ease"
+      },
+      "slideIn": {
+        "transform": "translateX(-20px)",
+        "opacity": "0",
+        "transition": "all 0.3s ease"
+      }
+    },
+
+    "patterns": {
+      "heroSection": {
+        "textAlign": "center",
+        "padding": "96px 24px",
+        "background": "linear-gradient(135deg, #000000 0%, #1A1A1A 100%)",
+        "position": "relative"
+      },
+      "statsGrid": {
+        "display": "grid",
+        "gridTemplateColumns": "repeat(auto-fit, minmax(300px, 1fr))",
+        "gap": "24px",
+        "marginTop": "48px"
+      },
+      "servicesList": {
+        "display": "flex",
+        "flexDirection": "column",
+        "gap": "16px"
+      },
+      "pricingCard": {
+        "maxWidth": "400px",
+        "margin": "0 auto",
+        "position": "relative"
+      }
+    },
+
+    "designPrinciples": {
+      "darkTheme": "Primary design uses dark backgrounds with high contrast text",
+      "redAccent": "Red (#E53E3E) as primary brand color for CTAs and highlights",
+      "gaming": "Gaming/tech aesthetic with sharp edges and modern styling",
+      "minimal": "Clean, minimal design with purposeful use of space",
+      "statusDriven": "Heavy use of status indicators and real-time data",
+      "cardBased": "Content organized in cards with subtle borders and shadows",
+      "typographyHierarchy": "Clear hierarchy with bold headings and readable body text"
+    },
+
+    "contentStructure": {
+      "hero": {
+        "components": ["headline", "subheadline", "cta_button", "stats_preview"],
+        "layout": "center_aligned"
+      },
+      "features": {
+        "components": ["feature_cards", "demo_interface", "trust_indicators"],
+        "layout": "grid_based"
+      },
+      "pricing": {
+        "components": ["price_card", "feature_list", "cta_buttons", "payment_methods"],
+        "layout": "centered_card"
+      },
+      "status": {
+        "components": ["status_grid", "uptime_metrics", "service_list"],
+        "layout": "dashboard_style"
+      },
+      "legal": {
+        "components": ["policy_sections", "expandable_content", "contact_info"],
+        "layout": "document_style"
+      }
+    },
+
+    "responsiveBreakpoints": {
+      "mobile": "320px",
+      "tablet": "768px",
+      "desktop": "1024px",
+      "wide": "1440px"
+    },
+
+    "accessibility": {
+      "colorContrast": "Minimum 4.5:1 ratio for text",
+      "focusStates": "Visible focus indicators for keyboard navigation",
+      "semanticMarkup": "Proper heading hierarchy and ARIA labels",
+      "keyboardNavigation": "Full keyboard accessibility support"
+    }
+  }
+}
