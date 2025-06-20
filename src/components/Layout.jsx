@@ -35,14 +35,18 @@ const Layout = ({ children }) => {
     { name: 'Buy Synex', path: '/buy' },
   ], []);
 
+  const isBuyPage = location.pathname === '/buy';
+
   return (
     <>
-      <Aurora
-        colorStops={["#FFD700", "#FFEA00", "#0D0D0D"]}
-        blend={0.5}
-        amplitude={1.0}
-        speed={0.5}
-      />
+      {!isBuyPage && (
+        <Aurora
+          colorStops={["#FFD700", "#FFEA00", "#0D0D0D"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.5}
+        />
+      )}
       <header className="sticky-header">
         <div className="container">
           <div className="navbar">

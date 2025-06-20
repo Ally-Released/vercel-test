@@ -58,9 +58,9 @@ const HomePage = () => {
                             Overrated.
                         </FuzzyGradientText>
                     </div>
-                    <Link to="/login" style={{textDecoration: 'none'}}>
+                    <Link to="/buy" style={{textDecoration: 'none'}}>
                         <StarBorder as="div" color="var(--color-primary)">
-                            Customer Portal
+                            Get Started
                         </StarBorder>
                     </Link>
                 </div>

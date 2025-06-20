@@ -100,6 +100,19 @@ body {
   position: relative; /* New: To contain the absolute positioned background */
 }
 
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.buy-page-background {
+    opacity: 0.3;
+}
+
 main {
     position: relative;
     z-index: 1;
@@ -107,6 +120,7 @@ main {
     animation: fadeIn 0.5s ease-out forwards;
     animation-delay: 0.2s;
     flex: 1; /* Allow main to grow and push footer down */
+    padding-bottom: var(--space-4xl);
 }
 
 @keyframes fadeIn {
@@ -532,27 +546,18 @@ Animations & Effects
 Login Page (Premium)
 --- */
 .login-page-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  padding: var(--space-xl);
-  position: relative;
-  overflow: hidden;
-}
-
-#root > .aurora-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
 }
 
 .customer-portal-container.premium-layout {
   position: relative;
-  z-index: 1;
+  overflow: hidden;
   background-color: var(--color-card-bg);
   padding: var(--space-2xl);
   border-radius: var(--radius-lg);
@@ -644,4 +649,225 @@ Login Page (Premium)
 
 .premium-layout .help-link:hover {
     color: var(--color-primary);
+}
+
+/* ---
+Page: Buy
+--- */
+.buy-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+.buy-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.buy-card {
+  background-color: var(--color-card-bg);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.buy-card h2 {
+  text-align: center;
+  font-size: var(--font-size-h2);
+  margin-bottom: var(--space-lg);
+}
+
+/* Remove styles that moved to modal */
+.buy-card-section,
+.features-grid,
+.bonus-list {
+  display: none;
+}
+
+.price-section.summary {
+  margin: 0 0 var(--space-xl) 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.price-display {
+    font-size: var(--font-size-h2);
+    color: var(--color-text);
+    font-weight: 600;
+    margin: var(--space-xs) 0;
+}
+
+/* ---
+Details Modal
+--- */
+
+.details-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  padding: var(--space-lg);
+}
+
+.details-modal-fade-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-modal {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-glow);
+  width: 100%;
+  max-width: 900px; /* More horizontal */
+  display: flex;
+  gap: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-2xl);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-lg);
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  color: var(--color-primary);
+}
+
+.modal-content-left,
+.modal-content-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content-right {
+    background-color: rgba(0,0,0,0.2);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+}
+
+.modal-content-left h2 {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.modal-content-right .bonus-list-container {
+    flex: 1;
+}
+
+.modal-content-right .bonus-list-container h3 {
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+}
+
+.modal-content-right .purchase-action-area {
+    margin-top: var(--space-xl);
+}
+
+/* Re-apply and adjust styles for content inside modal */
+.details-modal .buy-card-section {
+  display: block;
+  margin-bottom: var(--space-xl);
+}
+.details-modal .buy-card-section h3 {
+  font-size: var(--font-size-h3);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+.details-modal ul {
+  list-style: none;
+  padding: 0;
+}
+.details-modal ul li {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-secondary);
+}
+.details-modal .features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm) var(--space-lg);
+}
+.details-modal .bonus-list {
+    display: block;
+}
+
+.details-modal .price-section {
+  text-align: center;
+  margin: 0 0 var(--space-lg) 0;
+  padding: 0;
+  background-color: transparent;
+}
+.details-modal .price-label {
+    font-weight: 700;
+    font-size: var(--font-size-body);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+}
+
+.details-modal .price-display .new-price {
+  font-size: var(--font-size-h2);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.details-modal .price-display .old-price {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  margin-left: var(--space-sm);
+}
+
+.details-modal .price-note {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+}
+
+.details-modal .btn {
+  width: 100%;
+}
+
+.btn.take-the-shot {
+  color: #ff4d4d !important; /* Use important to override other styles */
+  animation: jitter 0.1s infinite;
+}
+
+@keyframes jitter {
+  0% { transform: translate(1px, 1px); }
+  25% { transform: translate(-1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, -1px); }
+  100% { transform: translate(1px, 1px); }
 } 
