@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import BuyPage from './pages/BuyPage';
 import PolicyPage from './pages/PolicyPage';
+import FaqPage from './pages/FaqPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/buy" element={<BuyPage />} />
           <Route path="/policy" element={<PolicyPage />} />
+          <Route path="/faq" element={<FaqPage />} />
         </Routes>
       </Layout>
     </Router>

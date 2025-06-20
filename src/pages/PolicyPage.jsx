@@ -1,55 +1,61 @@
-import React, { useState } from 'react';
-
-const AccordionItem = ({ title, children, isOpen, onClick }) => (
-    <div className={`accordion-item ${isOpen ? 'open' : ''}`}>
-        <h3 className="accordion-header" onClick={onClick}>
-            {title}
-            <span className="accordion-icon">{isOpen ? '-' : '+'}</span>
-        </h3>
-        {isOpen && <div className="accordion-content">{children}</div>}
-    </div>
-);
+import React from 'react';
+import './PolicyPage.css';
+import ShinyText from '../components/ShinyText';
 
 const PolicyPage = () => {
-    const [openIndex, setOpenIndex] = useState(null);
-
-    const toggleItem = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
-
-    const policies = [
-        {
-            title: 'Privacy Policy',
-            content: 'Your privacy is important to us. It is Synex\'s policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.'
-        },
-        {
-            title: 'Terms of Service',
-            content: 'By accessing the website at Synex, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.'
-        },
-        {
-            title: 'Cookie Policy',
-            content: 'We use cookies to help improve your experience of our website. This cookie policy is part of Synex\'s privacy policy, and covers the use of cookies between your device and our site.'
-        }
-    ];
-
     return (
-        <section className="policy-section">
-            <div className="container">
-                <h2>Policies</h2>
-                <div className="accordion">
-                    {policies.map((policy, index) => (
-                        <AccordionItem
-                            key={index}
-                            title={policy.title}
-                            isOpen={openIndex === index}
-                            onClick={() => toggleItem(index)}
-                        >
-                            <p>{policy.content}</p>
-                        </AccordionItem>
-                    ))}
+        <div className="policy-container">
+            <h1 className="policy-title">Store Policy</h1>
+            <div className="policy-content">
+                <div className="policy-section">
+                    <h2 className="policy-section-title">
+                        <ShinyText text="1. Refund Policy" />
+                    </h2>
+                    <ul className="policy-list">
+                        <li>Refunds are only eligible if the product does not function as described after full support attempts.</li>
+                        <li>Refund requests must be submitted within 24 hours of purchase with proof of issue and support chat logs.</li>
+                        <li>No refunds for buyer error, change of mind, or misuse.</li>
+                    </ul>
+                </div>
+
+                <div className="policy-section">
+                    <h2 className="policy-section-title">
+                        <ShinyText text="2. Delivery Terms" />
+                    </h2>
+                    <ul className="policy-list">
+                        <li>All digital products are delivered within 1–24 hours after confirmed payment.</li>
+                    </ul>
+                </div>
+
+                <div className="policy-section">
+                    <h2 className="policy-section-title">
+                        <ShinyText text="3. Usage & Warranty" />
+                    </h2>
+                    <ul className="policy-list">
+                        <li>Products are sold as-is for personal use only. Use at your own risk.</li>
+                    </ul>
+                </div>
+
+                <div className="policy-section">
+                    <h2 className="policy-section-title">
+                        <ShinyText text="4. Support Policy" />
+                    </h2>
+                    <ul className="policy-list">
+                        <li>Basic setup support is provided.</li>
+                        <li>Custom setups, private fixes, or extra features require additional payment (if offered).</li>
+                    </ul>
+                </div>
+
+                <div className="policy-section">
+                    <h2 className="policy-section-title">
+                        <ShinyText text="5. Blacklist & Chargebacks" />
+                    </h2>
+                    <ul className="policy-list">
+                        <li>Chargeback attempts, scam reports, or ToS violations result in instant blacklist without warning.</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 

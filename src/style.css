@@ -59,6 +59,14 @@ Adapted from avm_design_system.json and user request.
   scroll-behavior: auto;
 }
 
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
 
 /* ---
 Global Styles
@@ -72,13 +80,13 @@ Global Styles
   padding: 0;
 }
 
-html, body, #root {
-  height: 100%;
-}
-
 html {
   /* Lenis requirement */
   scroll-behavior: auto;
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar for IE, Edge */
+  -ms-overflow-style: none;
 }
 
 body {
@@ -91,6 +99,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 #root {
@@ -101,16 +116,16 @@ body {
 }
 
 .background-container {
-    position: fixed;
-    top: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
 }
 
 .buy-page-background {
-    opacity: 0.3;
+    opacity: 0.03;
 }
 
 main {
@@ -121,6 +136,8 @@ main {
     animation-delay: 0.2s;
     flex: 1; /* Allow main to grow and push footer down */
     padding-bottom: var(--space-4xl);
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes fadeIn {
@@ -180,9 +197,9 @@ Shared Components
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly more transparent */
+  backdrop-filter: blur(12px); /* Increased blur */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
   transition: box-shadow 0.2s ease;
 }
 
@@ -194,14 +211,27 @@ Shared Components
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 65px; /* Thinner header */
 }
 
 .nav-logo {
-  font-family: var(--font-display);
   font-size: 24px;
   font-weight: 700;
   color: var(--color-text);
+  letter-spacing: 1px;
+  display: flex; /* To align the image properly */
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px; /* Adjust as needed */
+  width: auto;
+}
+
+.logo-text {
+  margin-left: 8px; /* Closer to the logo */
+  font-size: 26px;
+  font-weight: 700;
 }
 
 .nav-links {
@@ -344,44 +374,72 @@ Shared Components
 
 /* Footer */
 .footer {
-  background-color: #050505;
-  padding: var(--space-xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 10;
+  padding: 1rem 0; /* thinner padding */
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* very subtle top border */
   margin-top: auto; /* Push footer to the bottom */
-}
-
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-md);
-}
-
-.footer .social-icons a {
-  color: var(--color-text-muted);
-  font-size: 24px;
-}
-
-.footer .social-icons a:hover {
-  color: var(--color-text);
+  text-align: center;
 }
 
 .footer p {
   margin: 0;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.5); /* subtle text color */
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 .footer-links {
     display: flex;
     gap: var(--space-lg);
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100vh;
+  z-index: 2000;
+  pointer-events: none;
+  padding: 10px 0;
+}
+
+.custom-scrollbar-thumb {
+  position: absolute;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  pointer-events: auto;
+  cursor: grab;
+  will-change: top;
+}
+
+.scrollbar-logo {
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.scrollbar-logo:hover {
+  opacity: 1;
 }
 
 /* Floating Action Button (FAB) */
@@ -504,16 +562,21 @@ Animations & Effects
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-xl);
 }
 
 .feature-card {
     background-color: var(--color-card-bg);
-    padding: var(--space-xl);
-    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-card:hover {
@@ -542,113 +605,96 @@ Animations & Effects
     margin-bottom: var(--space-sm);
 }
 
-/* ---
-Login Page (Premium)
---- */
+/* Updated Customer Portal / Login Page Styles */
 .login-page-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: var(--space-2xl);
-    position: relative;
-    overflow: hidden;
+    justify-content: center;
+    flex-grow: 1;
+    padding: var(--space-xl);
 }
 
-.customer-portal-container.premium-layout {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--color-card-bg);
-  padding: var(--space-2xl);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  width: 100%;
-  max-width: 380px; /* Thinner */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 215, 0, 0.05);
-  border-top: 3px solid var(--color-primary);
-}
-
-.premium-layout .portal-image-header {
-  height: 120px;
-  margin-bottom: var(--space-lg);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background-color: #000;
-  border: 1px solid var(--color-border);
-}
-
-.premium-layout .portal-header {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-}
-
-.premium-layout .portal-title {
-  font-size: var(--font-size-h2);
-  margin-bottom: var(--space-xs);
-  color: var(--color-text);
-}
-
-.premium-layout .portal-subtitle {
-  color: var(--color-text-secondary);
-}
-
-.premium-layout .login-tabs {
-  display: flex;
-  background-color: #0A0A0A;
-  border-radius: var(--radius-md);
-  padding: var(--space-xs);
-  margin-bottom: var(--space-lg);
-}
-
-.premium-layout .tab {
-  flex: 1;
-  padding: var(--space-sm);
-  border: none;
-  background-color: transparent;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-small);
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.premium-layout .tab.active {
-  background-color: var(--color-primary);
-  color: #000;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
-
-.premium-layout .form-input {
-    background-color: #0A0A0A;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-md);
+.customer-portal-container {
     width: 100%;
-    margin-bottom: var(--space-lg);
+    max-width: 450px;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 50px rgba(255, 242, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-.premium-layout .form-input:focus {
+.portal-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.portal-title {
+    font-size: var(--font-size-h2);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.login-tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-xs);
+}
+
+.tab {
+    flex: 1;
+    padding: var(--space-md);
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tab.active {
+    background: var(--color-primary);
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 242, 0, 0.5);
+}
+
+.login-form .form-input {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--color-border);
+}
+
+.login-form .form-input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
-    outline: none;
+    box-shadow: 0 0 10px rgba(255, 242, 0, 0.5);
 }
 
-.premium-layout .portal-footer {
+.btn-portal-login {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: var(--space-md);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    margin-top: var(--space-md);
+}
+
+.portal-footer {
     text-align: center;
     margin-top: var(--space-xl);
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-lg);
 }
 
-.premium-layout .help-link {
+.help-text {
+    color: var(--color-text-muted);
     font-size: var(--font-size-small);
-    color: var(--color-text-secondary);
-    transition: color 0.2s;
-}
-
-.premium-layout .help-link:hover {
-    color: var(--color-primary);
 }
 
 /* ---
@@ -672,33 +718,133 @@ Page: Buy
 }
 
 .buy-card {
-  background-color: var(--color-card-bg);
-  padding: var(--space-2xl);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  width: 100%;
-  max-width: 400px;
-  box-shadow: var(--shadow-lg);
-  text-align: center;
+    background: rgba(16, 16, 16, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 40px rgba(255, 242, 0, 0.1);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.buy-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 60px rgba(255, 242, 0, 0.25);
 }
 
 .buy-card h2 {
-  text-align: center;
-  font-size: var(--font-size-h2);
-  margin-bottom: var(--space-lg);
+    font-size: var(--font-size-h2);
+    margin-bottom: var(--space-lg);
 }
 
-/* Remove styles that moved to modal */
+.buy-card h2 .shiny-text {
+    font-size: inherit;
+    font-weight: inherit;
+    color: rgba(255, 255, 255, 0.7);
+    background: linear-gradient(
+      120deg,
+      transparent 40%,
+      rgba(255, 242, 0, 0.8) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.buy-section p {
+    font-size: var(--font-size-h3);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+}
+
+.buy-page-shiny {
+    font-size: var(--font-size-hero);
+    font-weight: 600;
+    /* Override for yellow shine */
+    color: rgba(255, 255, 255, 0.7);
+    background: linear-gradient(
+      120deg,
+      transparent 40%,
+      rgba(255, 242, 0, 0.8) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.btn-view-details {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    padding: var(--space-md) var(--space-xl);
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: var(--space-lg);
+}
+
+.price-display {
+    margin: var(--space-lg) 0;
+    align-items: center;
+}
+
+.price-display .new-price {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.price-display .new-price .shiny-text {
+    font-size: inherit;
+    font-weight: inherit;
+    color: rgba(255, 255, 255, 0.8);
+    background: linear-gradient(
+      120deg,
+      transparent 35%,
+      rgba(255, 242, 0, 1) 50%,
+      transparent 65%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.price-display .old-price {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-left: var(--space-md);
+    text-decoration-thickness: 2px;
+}
+
+.price-note {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* 
+  The commented-out rule below was incorrectly hiding content inside the modal.
+  It has been removed to ensure all content is visible.
+*/
+/*
 .buy-card-section,
 .features-grid,
 .bonus-list {
   display: none;
 }
+*/
 
 .price-section.summary {
-  margin: 0 0 var(--space-xl) 0;
-  padding: 0;
-  background-color: transparent;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .price-display {
@@ -817,23 +963,15 @@ Details Modal
 .details-modal .features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-sm) var(--space-lg);
+  gap: var(--space-sm) var(--space-xl);
 }
 .details-modal .bonus-list {
-    display: block;
+    list-style: none;
+    padding: 0;
 }
 
-.details-modal .price-section {
-  text-align: center;
-  margin: 0 0 var(--space-lg) 0;
-  padding: 0;
-  background-color: transparent;
-}
-.details-modal .price-label {
-    font-weight: 700;
-    font-size: var(--font-size-body);
-    color: var(--color-text);
-    margin-bottom: var(--space-sm);
+.details-modal .bonus-list li {
+    margin-bottom: var(--space-md);
 }
 
 .details-modal .price-display .new-price {
@@ -870,4 +1008,115 @@ Details Modal
   50% { transform: translate(-1px, 1px); }
   75% { transform: translate(1px, -1px); }
   100% { transform: translate(1px, 1px); }
-} 
+}
+
+.modal-content-right .purchase-action-area .btn {
+    color: #000;
+    font-weight: 700;
+    padding: 12px 32px; /* Making the button smaller */
+    font-size: 0.95rem; /* Slightly smaller font */
+}
+
+.details-modal .buy-card-section h3 .animated-gradient-text {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+.modal-price {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    border: 1px solid rgba(255, 242, 0, 0.2); /* Softer border */
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: radial-gradient(circle at 50% 0%, rgba(255, 242, 0, 0.1) 0%, transparent 70%); /* Top-down glow */
+    animation: pulse-glow 4s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 242, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 242, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 242, 0, 0.2);
+  }
+}
+
+.modal-price-main {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.modal-price-main span {
+    color: var(--color-primary);
+}
+
+.modal-price-old {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+    margin: var(--space-xs) 0;
+}
+
+.modal-price-tagline {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-md);
+}
+
+.purchase-tagline {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-top: var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cleanup old modal price styles that are no longer needed */
+.details-modal .price-label,
+.details-modal .price-display .new-price,
+.details-modal .price-display .old-price,
+.details-modal .price-note {
+    display: none;
+}
+
+.details-modal .buy-card-section h3,
+.details-modal .bonus-list-container h3 {
+    margin-bottom: var(--space-lg);
+}
+
+.details-modal h3 .shiny-text {
+    font-size: inherit;
+    font-weight: inherit;
+    color: rgba(255, 255, 255, 0.85); /* Brighter base text */
+    background: linear-gradient(
+      120deg,
+      transparent 40%,
+      rgba(255, 242, 0, 0.8) 50%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.details-modal ul li .shiny-text {
+    font-size: inherit;
+    font-weight: inherit;
+    color: rgba(255, 255, 255, 0.8); /* Brighter base text */
+    /* This uses the default white shine from the component */
+}
+
+.details-modal .buy-card-section h3 .animated-gradient-text {
+    font-size: inherit;
+    font-weight: inherit;
+}

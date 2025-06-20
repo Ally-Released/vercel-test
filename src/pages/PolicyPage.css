@@ -1,0 +1,56 @@
+.policy-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+    color: #e0e0e0;
+}
+
+.policy-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.policy-section {
+    margin-bottom: 2.5rem;
+}
+
+.policy-section-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.policy-section-title .shiny-text {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.policy-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0.5rem;
+}
+
+.policy-list li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.policy-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-size: 1.2rem;
+} 

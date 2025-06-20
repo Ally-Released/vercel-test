@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NoiseArt from '../components/NoiseArt';
+import StarBorder from '../components/StarBorder';
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState('productKey');
 
   return (
     <div className="login-page-container">
-        <div className="customer-portal-container premium-layout">
-            <div className="portal-image-header">
-                <NoiseArt colors={['#0D0D0D', 'var(--color-primary)']} />
-            </div>
+        <div className="customer-portal-container">
             <div className="portal-header">
                 <h2 className="portal-title">Customer Portal</h2>
-                <p className="portal-subtitle">Access your Synex dashboard.</p>
             </div>
     
             <div className="login-tabs">
@@ -37,14 +33,16 @@ const LoginPage = () => {
                   id="loginCredential"
                   type="text"
                   className="form-input"
-                  placeholder={activeTab === 'productKey' ? 'Enter your product key' : 'Enter your Order ID'}
+                  placeholder={activeTab === 'productKey' ? 'Enter your product key...' : 'Enter your Order ID...'}
                 />
               </div>
-              <button className="btn btn-premium-login">Login</button>
+              <StarBorder as="button" type="submit" className="btn-portal-login">
+                Access Dashboard
+              </StarBorder>
             </div>
             
             <div className="portal-footer">
-                <Link to="/support" className="help-link">Forgot your key or Order ID?</Link>
+                <p className="help-text">Can't log in? Please contact support.</p>
             </div>
       </div>
     </div>

@@ -1,0 +1,8 @@
+.noise-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -1;
+} 
